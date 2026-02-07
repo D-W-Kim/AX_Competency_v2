@@ -904,10 +904,10 @@ function calculateRoleFromAnswers(answers) {
         };
     }
     
-    // 2. 전문가 점수가 3.5 이상이고 생성형 AI 점수가 3.5 미만이면 AI 전문가
+    // 2. 전문가 점수가 3.5 이상이고 생성형 AI 점수가 3.5 미만이면 AX 전문가
     if (expert_score >= 3.5 && genAI_score < 3.5) {
         return {
-            finalRole: 'AI 전문가',
+            finalRole: 'AX 전문가',
             description: '당신은 고급 모델링과 AI 기술 내재화에 강점을 지닌 기술 전문가입니다.',
             scores: {
                 genAI: genAI_score,
@@ -918,10 +918,10 @@ function calculateRoleFromAnswers(answers) {
         };
     }
     
-    // 3. 전략 점수가 2.5 이상이고 실무 데이터 활용 점수가 3.0 미만이면 현업 AI 관리자
+    // 3. 전략 점수가 2.5 이상이고 실무 데이터 활용 점수가 3.0 미만이면 AX 현업 관리자
     if (strategy_score >= 2.5 && field_score < 3.0) {
         return {
-            finalRole: '현업 AI 관리자',
+            finalRole: 'AX 현업 관리자',
             description: '당신은 현장 중심 AI 과제를 기획·조율하고, 팀원 교육·도입을 주도하는 현업 리더로서 실무와 전략을 연결하는 실행 관리자입니다.',
             scores: {
                 genAI: genAI_score,
@@ -932,10 +932,10 @@ function calculateRoleFromAnswers(answers) {
         };
     }
     
-    // 4. 전략 점수가 3.5 이상이고 실무 데이터 활용 점수가 3.0 이상이면 AI 전략 리더
+    // 4. 전략 점수가 3.5 이상이고 실무 데이터 활용 점수가 3.0 이상이면 AX 리더
     if (strategy_score >= 3.5 && field_score >= 3.0) {
         return {
-            finalRole: 'AI 전략 리더',
+            finalRole: 'AX 리더',
             description: '당신은 조직의 AI 전략을 설계하고 책임 있게 운영할 수 있는 관리자 유형입니다.',
             scores: {
                 genAI: genAI_score,
@@ -960,10 +960,10 @@ function calculateRoleFromAnswers(answers) {
         };
     }
     
-    // 6. 실무 데이터 활용 점수가 3.0 이상이면 AI 실무자
+    // 6. 실무 데이터 활용 점수가 3.0 이상이면 AX 실무자
     if (field_score >= 3.0) {
         return {
-            finalRole: 'AI 실무자',
+            finalRole: 'AX 실무자',
             description: '당신은 현업에서 데이터를 기반으로 개선 활동을 주도하는 실무형 AI 활용자입니다.',
             scores: {
                 genAI: genAI_score,
@@ -1043,20 +1043,20 @@ function renderRoleResultPage(roleResult) {
     
     // 사용 가능한 역할 목록이에요 (AI 입문자 제외)
     const availableRoles = [
-        'AI 전문가',
-        'AI 실무자',
+        'AX 전문가',
+        'AX 실무자',
         '생성형 AI 활용자',
-        '현업 AI 관리자',
-        'AI 전략 리더'
+        'AX 현업 관리자',
+        'AX 리더'
     ];
     
     // 역할별 정의 정보예요
     const roleDefinitions = {
-        'AI 전문가': 'AI 기술의 전문지식을 보유하고, AI 모델을 직접 개발·운영하거나 새로운 솔루션을 설계하는 고급 기술 인력.',
-        'AI 실무자': '자신의 업무 영역에서 데이터를 활용해 AI 기술을 적용하거나, AI 전문가와 협업해 프로젝트를 수행하는 실무 중심 인력 (사내 Citizen Data Scientist역할 포함)',
+        'AX 전문가': 'AI 기술의 전문지식을 보유하고, AI 모델을 직접 개발·운영하거나 새로운 솔루션을 설계하는 고급 기술 인력.',
+        'AX 실무자': '자신의 업무 영역에서 데이터를 활용해 AI 기술을 적용하거나, AX 전문가와 협업해 프로젝트를 수행하는 실무 중심 인력 (사내 Citizen Data Scientist역할 포함)',
         '생성형 AI 활용자': '생성형 AI 도구를 적극적으로 활용하여 본인의 비개발 직무를 자동화하거나, 문서·보고서·아이디어 생성 등에서 생산성을 높이는 사용자',
-        '현업 AI 관리자': 'AI 프로젝트를 현장 단위에서 기획·조율하고, 팀원 교육·도입을 주도하는 현업 리더 또는 관리자로서 실무와 전략을 연결하는 실행 관리자',
-        'AI 전략 리더': '조직 차원의 AI 도입 방향과 투자 우선순위를 설계하고, 윤리·보안·성과(ROI) 관점에서 책임 있는 기술 도입을 리드하는 의사결정자'
+        'AX 현업 관리자': 'AI 프로젝트를 현장 단위에서 기획·조율하고, 팀원 교육·도입을 주도하는 현업 리더 또는 관리자로서 실무와 전략을 연결하는 실행 관리자',
+        'AX 리더': '조직 차원의 AI 도입 방향과 투자 우선순위를 설계하고, 윤리·보안·성과(ROI) 관점에서 책임 있는 기술 도입을 리드하는 의사결정자'
     };
     
     // 처음 화면에는 아무것도 선택되지 않은 상태로 표시해요
@@ -1980,35 +1980,45 @@ function analyzeGapAndRecommend(competencyResult, roleMatrix, roles) {
     // 격차가 큰 역량부터 정렬해요 (격차가 클수록 우선순위가 높아요)
     const sortedGaps = Object.entries(gapLevels)
         .sort((a, b) => a[1] - b[1]) // 격차가 작은 값(더 부족한 것)부터 정렬
-        .map(([competencyName, gap]) => competencyName);
+        .map(([competencyName, gap]) => ({ competencyName, gap }));
     
     console.log('격차 순서 (큰 것부터):', sortedGaps);
     
     // 부족한 역량에 대해 교육 과정을 추천해요
+    // 격차 수준에 따라 추천 개수를 다르게 설정해요
     const recommendedCourses = [];
-    const maxCoursesPerCompetency = 1; // 역량당 최대 1개 과정 추천
-    const maxTotalCourses = 3; // 전체 최대 3개 과정 추천
     
-    for (const competencyName of sortedGaps) {
-        if (recommendedCourses.length >= maxTotalCourses) {
-            break;
+    for (const { competencyName, gap } of sortedGaps) {
+        // 격차에 따라 추천할 과정 개수를 결정해요
+        let coursesToRecommend = 0;
+        
+        if (gap <= -3) {
+            // 3점 이상 부족: 3개 과정 추천
+            coursesToRecommend = 3;
+        } else if (gap === -2) {
+            // 2점 부족: 2개 과정 추천
+            coursesToRecommend = 2;
+        } else if (gap === -1) {
+            // 1점 부족: 2개 과정 추천
+            coursesToRecommend = 2;
         }
         
+        console.log(`역량 "${competencyName}" 격차 ${gap}점 → ${coursesToRecommend}개 과정 추천`);
+        
         // 해당 역량에 대한 교육 과정을 조회해요
-        const courses = getEducationCourses(competencyName, roles, maxCoursesPerCompetency);
+        const courses = getEducationCourses(competencyName, roles, coursesToRecommend);
         
         // 교육 과정을 추천 목록에 추가해요
         for (const course of courses) {
-            if (recommendedCourses.length >= maxTotalCourses) {
-                break;
-            }
-            
             recommendedCourses.push({
                 과정명: course.courseName,
-                대상역량: course.targetCompetency,
+                대상역량: competencyName,
                 방식: course.method,
                 소요시간: course.duration,
                 난이도: course.difficulty,
+                난이도별표: course.difficultyStars,
+                제공기관: course.provider,
+                레벨: course.level,
                 신청링크: course.link,
                 설명: course.description
             });
@@ -2065,38 +2075,52 @@ function renderCompetencyResultPage(competencyScores, gapAnalysisResults, select
             }
         }
         
-        // 추천 교육 과정 통합 (중복 제거)
+        // 추천 교육 과정 통합 (과정명과 대상역량이 모두 같을 때만 중복으로 판단해요)
         for (const course of result.추천학습과정) {
-            if (!allRecommendedCourses.find(c => c.과정명 === course.과정명)) {
+            if (!allRecommendedCourses.find(c => c.과정명 === course.과정명 && c.대상역량 === course.대상역량)) {
                 allRecommendedCourses.push(course);
             }
         }
     }
     
     // 추천 교육 과정을 우선순위에 따라 정렬해요
-    // 우선순위: 설문문항수가 많고, Gap 점수가 낮은(더 부족한) 역량 순서
+    // 우선순위: Gap 점수가 낮은(더 부족한) 역량 순서, 그 다음 난이도 순서
     const sortedRecommendedCourses = allRecommendedCourses.sort((a, b) => {
-        const aQuestionCount = competencyQuestionCounts[a.대상역량] || 0;
-        const bQuestionCount = competencyQuestionCounts[b.대상역량] || 0;
         const aGap = allGapLevels[a.대상역량] || 0;
         const bGap = allGapLevels[b.대상역량] || 0;
         
-        // 설문문항수가 많은 순서로 정렬
-        if (aQuestionCount !== bQuestionCount) {
-            return bQuestionCount - aQuestionCount;
+        // Gap 점수가 낮은(더 부족한) 순서로 정렬
+        if (aGap !== bGap) {
+            return aGap - bGap;
         }
         
-        // 설문문항수가 같으면 Gap 점수가 낮은(더 부족한) 순서로 정렬
-        return aGap - bGap;
+        // Gap이 같으면 난이도가 낮은 순서로 정렬
+        return a.난이도 - b.난이도;
     });
     
-    // 추천 교육 과정을 최대 3개로 제한해요
-    const finalRecommendedCourses = sortedRecommendedCourses.slice(0, 3);
+    // 모든 추천 교육 과정을 표시해요 (개수 제한 없음)
+    const finalRecommendedCourses = sortedRecommendedCourses;
+    
+    // 선택된 역할의 필요 역량 수준을 가져와요
+    // 여러 역할이 선택된 경우, 가장 높은 필요 수준을 사용해요
+    const requiredCompetencyLevels = {};
+    for (const role of selectedRoles) {
+        const roleMatrix = ROLE_COMPETENCY_MATRIX[role];
+        if (roleMatrix) {
+            for (const [competencyName, level] of Object.entries(roleMatrix)) {
+                if (!requiredCompetencyLevels[competencyName] || level > requiredCompetencyLevels[competencyName]) {
+                    requiredCompetencyLevels[competencyName] = level;
+                }
+            }
+        }
+    }
+    
+    console.log('필요 역량 수준:', requiredCompetencyLevels);
     
     // 모든 역량의 Gap 점수 평균 계산
     const allGapScores = [];
     Object.entries(competencyScores).forEach(([name, score]) => {
-        const targetScore = 5.0;
+        const targetScore = requiredCompetencyLevels[name] || 5.0;
         const gapScore = score - targetScore;
         allGapScores.push(gapScore);
     });
@@ -2105,7 +2129,7 @@ function renderCompetencyResultPage(competencyScores, gapAnalysisResults, select
     // 역량 점수와 Gap 점수를 통합하여 표시하기 위한 HTML을 만들어요
     const competencyBars = Object.entries(competencyScores).map(([name, score]) => {
         const percentage = (score / 5) * 100;
-        const targetScore = 5.0;
+        const targetScore = requiredCompetencyLevels[name] || 5.0;
         const gapScore = score - targetScore;
         
         // 설문문항 수 가져오기
@@ -2125,7 +2149,7 @@ function renderCompetencyResultPage(competencyScores, gapAnalysisResults, select
                         <div class="flex-1 bg-gray-200 rounded-full h-4">
                             <div class="bg-blue-600 h-4 rounded-full transition-all duration-500" style="width: ${percentage}%"></div>
                         </div>
-                        <span class="text-sm font-bold text-gray-800">${score.toFixed(1)} / 5.0</span>
+                        <span class="text-sm font-bold text-gray-800">${score.toFixed(1)} / ${targetScore.toFixed(1)}</span>
                         <span class="text-sm font-bold ${gapColorClass}">${gapScore.toFixed(1)}</span>
                     </div>
                 </div>
@@ -2349,4 +2373,203 @@ if (document.readyState === 'loading') {
     // HTML이 이미 로드되었으면 바로 실행해요
     initializeApp();
 }
+
+// ============================================
+// 개발자 테스트 모드
+// ============================================
+
+/**
+ * 테스트 시나리오 데이터를 정의해요
+ * 각 시나리오는 역할과 설문 응답 데이터를 포함해요
+ */
+const TEST_SCENARIOS = {
+    "생성형 AI 활용자": {
+        role: "생성형 AI 활용자",
+        currentRoles: ["생성형 AI 활용자"],
+        desiredRoles: ["생성형 AI 활용자"],
+        // 설문 응답: 모두 보통(3점) 수준으로 설정
+        answers: {
+            1: 3, 3: 3, 7: 3, 8: 3, 10: 3, 11: 3, 12: 3, 13: 3, 14: 3, 15: 3, 16: 3
+        }
+    },
+    "AX 현업 관리자": {
+        role: "AX 현업 관리자",
+        currentRoles: ["AX 현업 관리자"],
+        desiredRoles: ["AX 현업 관리자"],
+        // 설문 응답: 모두 보통(3점) 수준으로 설정
+        answers: {
+            1: 3, 3: 3, 7: 3, 8: 3, 10: 3, 11: 3, 12: 3, 13: 3, 14: 3, 15: 3, 16: 3,
+            31: 3, 36: 3, 39: 3, 40: 3
+        }
+    },
+    "AX 전문가": {
+        role: "AX 전문가",
+        currentRoles: ["AX 전문가"],
+        desiredRoles: ["AX 전문가"],
+        // 설문 응답: 모두 보통(3점) 수준으로 설정
+        answers: {
+            2: 3, 6: 3, 9: 3, 17: 3, 19: 3, 20: 3, 21: 3, 27: 3, 28: 3, 30: 3,
+            31: 3, 36: 3, 39: 3, 40: 3, 41: 3, 42: 3
+        }
+    },
+    "AX 실무자": {
+        role: "AX 실무자",
+        currentRoles: ["AX 실무자"],
+        desiredRoles: ["AX 실무자"],
+        // 설문 응답: 모두 보통(3점) 수준으로 설정
+        answers: {
+            2: 3, 6: 3, 9: 3, 17: 3, 19: 3, 20: 3, 21: 3, 27: 3, 28: 3, 30: 3,
+            31: 3, 36: 3, 39: 3, 40: 3, 41: 3, 42: 3
+        }
+    },
+    "AX 리더": {
+        role: "AX 리더",
+        currentRoles: ["AX 리더"],
+        desiredRoles: ["AX 리더"],
+        // 설문 응답: 모두 보통(3점) 수준으로 설정
+        answers: {
+            4: 3, 5: 3, 14: 3, 18: 3, 22: 3, 23: 3, 24: 3, 25: 3, 26: 3, 29: 3,
+            31: 3, 32: 3, 33: 3, 34: 3, 35: 3, 36: 3, 37: 3, 38: 3, 39: 3, 40: 3
+        }
+    }
+};
+
+/**
+ * 테스트 모드 모달을 표시하는 함수예요
+ */
+function showTestModeModal() {
+    // 모달 HTML을 생성해요
+    const modalHTML = `
+        <div id="test-mode-modal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+            <div class="bg-white rounded-lg shadow-xl p-6 max-w-md w-full mx-4">
+                <h2 class="text-2xl font-bold text-gray-800 mb-4">🧪 테스트 모드</h2>
+                <p class="text-sm text-gray-600 mb-4">테스트할 시나리오를 선택하세요.</p>
+                
+                <div class="space-y-2 mb-6">
+                    ${Object.keys(TEST_SCENARIOS).map(scenarioName => `
+                        <button 
+                            onclick="window.runTestScenario('${scenarioName}')"
+                            class="w-full text-left px-4 py-3 bg-blue-50 hover:bg-blue-100 rounded-lg transition-colors duration-200 border border-blue-200"
+                        >
+                            <span class="font-medium text-blue-800">${scenarioName}</span>
+                        </button>
+                    `).join('')}
+                </div>
+                
+                <button 
+                    onclick="window.closeTestModeModal()"
+                    class="w-full px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-lg transition-colors duration-200"
+                >
+                    취소
+                </button>
+            </div>
+        </div>
+    `;
+    
+    // body에 모달을 추가해요
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+}
+
+/**
+ * 테스트 모드 모달을 닫는 함수예요
+ */
+function closeTestModeModal() {
+    const modal = document.getElementById('test-mode-modal');
+    if (modal) {
+        modal.remove();
+    }
+}
+
+/**
+ * 선택된 테스트 시나리오를 실행하는 함수예요
+ * @param {string} scenarioName - 실행할 시나리오 이름
+ */
+function runTestScenario(scenarioName) {
+    console.log(`🧪 테스트 시나리오 실행: ${scenarioName}`);
+    
+    const scenario = TEST_SCENARIOS[scenarioName];
+    if (!scenario) {
+        console.error('시나리오를 찾을 수 없습니다:', scenarioName);
+        return;
+    }
+    
+    // 모달을 닫아요
+    closeTestModeModal();
+    
+    // 1단계: 현재 수행역할 선택 페이지로 이동
+    showRoleSelectionPage();
+    
+    // 잠시 후 자동으로 역할 선택
+    setTimeout(() => {
+        // 현재 수행역할 체크박스 선택
+        scenario.currentRoles.forEach(role => {
+            const checkbox = document.querySelector(`input[type="checkbox"][value="${role}"]`);
+            if (checkbox) {
+                checkbox.checked = true;
+            }
+        });
+        
+        // 다음 버튼 클릭
+        const nextButton = document.querySelector('button[onclick="handleCurrentRoleSubmit()"]');
+        if (nextButton) {
+            nextButton.click();
+        }
+        
+        // 2단계: 희망 수행역할 선택
+        setTimeout(() => {
+            scenario.desiredRoles.forEach(role => {
+                const checkbox = document.querySelector(`input[type="checkbox"][value="${role}"]`);
+                if (checkbox) {
+                    checkbox.checked = true;
+                }
+            });
+            
+            // 다음 버튼 클릭
+            const nextButton = document.querySelector('button[onclick="handleDesiredRoleSubmit()"]');
+            if (nextButton) {
+                nextButton.click();
+            }
+            
+            // 3단계: 역량 진단 설문 자동 입력
+            setTimeout(() => {
+                // 모든 설문 응답 입력
+                Object.entries(scenario.answers).forEach(([questionId, answer]) => {
+                    const radio = document.querySelector(`input[type="radio"][name="question-${questionId}"][value="${answer}"]`);
+                    if (radio) {
+                        radio.checked = true;
+                    }
+                });
+                
+                // 제출 버튼 클릭
+                setTimeout(() => {
+                    const submitButton = document.querySelector('button[onclick="handleCompetencySubmit()"]');
+                    if (submitButton) {
+                        submitButton.click();
+                        console.log('✅ 테스트 시나리오 실행 완료!');
+                    }
+                }, 500);
+            }, 500);
+        }, 500);
+    }, 500);
+}
+
+// 전역 스코프에 함수 등록
+window.showTestModeModal = showTestModeModal;
+window.closeTestModeModal = closeTestModeModal;
+window.runTestScenario = runTestScenario;
+
+/**
+ * F9 단축키 이벤트 리스너를 등록해요
+ */
+document.addEventListener('keydown', function(event) {
+    // F9 단축키 확인
+    if (event.key === 'F9') {
+        event.preventDefault();
+        console.log('🧪 테스트 모드 활성화');
+        showTestModeModal();
+    }
+});
+
+console.log('✅ 개발자 테스트 모드가 활성화되었습니다.');
+console.log('💡 F9 키를 눌러 테스트 시나리오를 실행하세요.');
 
